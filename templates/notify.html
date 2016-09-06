@@ -1,0 +1,127 @@
+{% extends "crudtemplate.html" %}
+{% block script %}
+    <script>
+
+        $(document).ready(function () {
+            var b = {{ alerts|tojson|safe }};
+            b.sort(function (a, b) {
+                if (a._id.$oid < b._id.$oid) return 1;
+                if (a._id.$oid > b._id.$oid) return -1;
+                return 0;
+            });
+            if (b != null) {
+                for (var x = 0; x < b.length; x++) {
+                    c = b[x];
+                    if (c.building != "") {
+                        var sub = '<li><div class="collapsible-header"><span class="red-text text-darken-5">' + c.subject + '</span></div>';
+                        var msg = '<div class="collapsible-body blue-text"><p>' + c.body + '</p></div></li>';
+                        $('#notifr').append(sub + msg);
+                    }
+
+                }
+            }
+
+            var d = {{ news|tojson|safe }};
+            d.sort(function (a, b) {
+                if (a._id.$oid < b._id.$oid) return 1;
+                if (a._id.$oid > b._id.$oid) return -1;
+                return 0;
+            });
+            if (d != null) {
+                for (var x = 0; x < d.length; x++) {
+                    var c = d[x];
+                    var sub = '<li><div class="collapsible-header"><span class="indigo-text text-darken-5">' + c.headline + '</span></div>';
+                    var msg = '<div class="collapsible-body blue-text"><p>' + c.details + '</p></div></li>';
+                    $('#newsc').append(sub + msg);
+
+                }
+            }
+
+            var f = {{ events|tojson|safe }};
+            f.sort(function (a, b) {
+                if (a._id.$oid < b._id.$oid) return 1;
+                if (a._id.$oid > b._id.$oid) return -1;
+                return 0;
+            });
+            if (f != null) {
+                for (var x = 0; x < f.length; x++) {
+                    var c = f[x];
+                    var sub = '<li><div class="collapsible-header">' + c.event_name + ' : <span class="indigo-text text-darken-4">' + c.from_date + '</span></div>';
+                    var msg = '<div class="collapsible-body"><div class="center"><h6 class="blue-text"><i class="material-icons blue-text tiny">alarm</i>' + c.start_time + '<span><i class="material-icons red-text tiny">location_on</i>' + c.location + '</h6></div><div class="blue-text">&emsp;Details : ' + c.description + '</div></div></li>';
+                    $('#eventsc').append(sub + msg);
+
+                }
+            }
+
+        });
+    </script>
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="section">
+
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m3">
+                <div class="icon-block center">
+                    <br>
+                    {#                    <div class="chip blue white-text">#}
+                    {#                        Profile Setup#}
+                    {#                    </div>#}
+                    {#                    <div class="line-linkage activelink"></div>#}
+
+                </div>
+            </div>
+
+
+            <div class="col s12 m6">
+
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3 tooltipped" data-position="top" data-delay="50" data-tooltip="Alerts"><a
+                                class="active"
+                                href="#test1"><i class="material-icons red-text">report_problem</i></a></li>
+                        <li class="tab col s3 tooltipped" data-position="top" data-delay="50" data-tooltip="News"><a
+                                href="#test2"><i
+                                class="material-icons orange-text text-accent-2">chat_bubble_outline</i></a>
+                        </li>
+                        <li class="tab col s3 tooltipped" data-position="top" data-delay="50" data-tooltip="Events"><a
+                                href="#test3"><i class="material-icons blue-text">today</i></a></li>
+                    </ul>
+                </div>
+                <div id="test1" class="col s12"><br>
+                    <ul class="collapsible" data-collapsible="accordion" id="notifr">
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+                <div id="test2" class="col s12"><br>
+                    <ul class="collapsible" data-collapsible="accordion" id="newsc">
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+                <div id="test3" class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion" id="eventsc">
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="icon-block">
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
