@@ -12,15 +12,11 @@ class Config(object):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     UPLOAD_FOLDER = '/static/img/uploads'
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
-    BROKER_URL = 'redis://redistogo:926e2ebd7e411547ded094aeb1939e0a@lab.redistogo.com:9464/'
-    CELERY_RESULT_BACKEND = 'redis://redistogo:926e2ebd7e411547ded094aeb1939e0a@lab.redistogo.com:9464/'
-    ENFERNO_ENV = 'dev'
+    BROKER_URL = 'redis://localhost:6379/10'
+    REDIS_URL = 'redis://localhost:6379/10'
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379/10'
     MONGODB_SETTINGS = {
-
-
-        'db': 'heroku_r6gzx0bj',
-        'host': 'mongodb://heroku_r6gzx0bj:52u7db1p5vasmg68iqpuk42niu@ds015730.mlab.com:15730/heroku_r6gzx0bj'
-
+        'db': 'houzee'
     }
 
     #security
