@@ -4,7 +4,6 @@ import os
 from flask.ext.script import Manager, Shell, Server
 from flask.ext.security.script import CreateUserCommand, AddRoleCommand, RemoveRoleCommand, ActivateUserCommand, \
     DeactivateUserCommand
-from gevent.pywsgi import WSGIServer
 from script import InstallCommand, ResetUserCommand
 from app import create_app
 
@@ -35,10 +34,11 @@ def _make_context():
     return {'app': app}
 
 
-def server():
-    app.debug = False
-    WSGIServer(('127.0.0.1', 5000), app).serve_forever()
-    # eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 7000)), app)
+#
+# def server():
+#     app.debug = False
+#     WSGIServer(('127.0.0.1', 5000), app).serve_forever()
+#     # eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 7000)), app)
 
 
 manager.add_command('server', Server())
