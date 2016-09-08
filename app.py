@@ -71,7 +71,6 @@ def register_blueprints(app):
     app.register_blueprint(bp_public)
     app.register_blueprint(bp_user)
     app.register_blueprint(sse, url_prefix='/stream')
-    # print(app.url_map)
     return None
 
 
