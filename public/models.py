@@ -20,7 +20,7 @@ class Township(db.Document):
     address = db.StringField(required=True, help_text='location_on')
     city = db.StringField(required=True, max_length=50, help_text='location_city')
     state = db.StringField(required=True, max_length=50, help_text='location_searching')
-    pincode = db.IntField(required=True, help_text='local_parking')
+    pincode = db.IntField(required=False, help_text='local_parking')
     phone = db.StringField(required=True, max_length=50, help_text='phone')
     website = db.StringField(required=True, max_length=50, help_text='web')
     email = db.StringField(required=True, max_length=50, help_text='email')

@@ -26,7 +26,7 @@ def before_request():
 
 @user_registered.connect
 def on_user_registration(sender, user, **extra):
-    AddRoleCommand().run(user_identifier=str(user.email), role_name='resident')
+    AddRoleCommand().run(user_identifier=str(user.email), role_name='manager')
 
 
 @bp_user.route('/')

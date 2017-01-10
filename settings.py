@@ -30,7 +30,8 @@ class Config(object):
 
     SECURITY_POST_LOGIN_VIEW = '/resident?m=l'
     SECURITY_POST_CONFIRM_VIEW = '/resident?m=l'
-    SECURITY_POST_REGISTER_VIEW = '/township'
+    SECURITY_POST_REGISTER_VIEW = '/township?s=t'
+    SECURITY_SEND_REGISTER_EMAIL = False
     SECURITY_POST_CHANGE_VIEW = '/profile'
     SECURITY_UNAUTHORIZED_VIEW = '/profile'
 
@@ -39,7 +40,7 @@ class Config(object):
     MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'postmaster@sandbox915ad276f504436e85698563f521a724.mailgun.org'
-    MAIL_PASSWORD = 'davajvmasd12345'
+    MAIL_PASSWORD = 'davajvmasd123456'
     MAIL_DEFAULT_SENDER = 'info@nikitph.com'
     SECURITY_EMAIL_SENDER = 'info@nikitph.com'
 

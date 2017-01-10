@@ -1,5 +1,6 @@
 from eve import Eve
 from eve_mongoengine import EveMongoengine
+from eve.auth import BasicAuth
 
 # init application
 from public.models import *
@@ -11,29 +12,26 @@ MONGODB_SETTINGS = {
     #     'MONGO_PORT': 27017,
     #     'MONGO_USERNAME' : None,
     # 'MONGO_PASSWORD': None,
-    'MONGO_DBNAME': 'ashrm3',
+    'MONGO_DBNAME': 'houzee',
     'X_DOMAINS': '*',
     'ALLOW_OVERRIDE_HTTP_METHOD':'true',
     'JSON_SORT_KEYS	':'true',
                    'DOMAIN': {'resident': {}}
 }
 
-app = Eve(settings=MONGODB_SETTINGS)
+
+class MyBasicAuth(BasicAuth):
+    def check_auth(self, username, password, allowed_roles, resource,
+                   method):
+        return username == 'admin' and password == 'secret'
+
+
+app = Eve(settings=MONGODB_SETTINGS, auth=MyBasicAuth)
 # init extension
 ext = EveMongoengine(app)
 # register model to eve
 ext.add_model(Resident)
-ext.add_model(BusRoute)
-ext.add_model(Transportation)
-ext.add_model(Hostel)
-ext.add_model(HostelRoom)
-ext.add_model(User)
-ext.add_model(Subject)
-ext.add_model(Teacher)
-ext.add_model(ClassRoom)
-ext.add_model(BusStop)
-ext.add_model(Driver)
-ext.add_model(Conveyance)
+ext.add_model(Township)
 
 
 
