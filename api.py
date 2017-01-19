@@ -16,7 +16,7 @@ MONGODB_SETTINGS = {
     'X_DOMAINS': '*',
     'ALLOW_OVERRIDE_HTTP_METHOD':'true',
     'JSON_SORT_KEYS	':'true',
-                   'DOMAIN': {'resident': {}}
+    'DOMAIN': {'resident': {}}
 }
 
 
@@ -36,4 +36,4 @@ ext.add_model(Township)
 
 
 # let's roll
-app.run(host='127.0.0.1', port=8001)
+app.run(host='127.0.0.1', port=8001, debug=True)
