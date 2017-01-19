@@ -14,7 +14,7 @@ from tasks import email
 
 from public.models import *
 from user.models import User, Notification
-from user.utility import cruder, poster, arg_builder, CrudParams
+from user.utility import cruder, poster, CrudParams
 
 bp_user = Blueprint('users', __name__, static_folder='../static')
 
