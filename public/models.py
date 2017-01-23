@@ -236,7 +236,7 @@ class News(db.Document):
 
 class Item(db.Document):
     building = db.StringField(required=True, max_length=50, help_text='')
-    user = db.ReferenceField(User, required=True, help_text='')
+    user = db.StringField(required=True, help_text='')
     item_summary = db.StringField(required=True, max_length=120, help_text='')
     price = db.StringField(required=True, max_length=50, help_text='')
     details = db.StringField(required=True, help_text='subject')

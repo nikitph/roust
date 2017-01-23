@@ -126,6 +126,7 @@ def resident():
     else:
         rid = poster(request, Resident)
         User.objects(id=rid).update_one(set__username=str(request.form['email']))
+        # add encryptipon
         User.objects(id=rid).update_one(set__password=str(request.form['phone']))
         User.objects(id=rid).update_one(set__active=True)
         User.objects(id=rid).update_one(set__building=str(g.user.building))

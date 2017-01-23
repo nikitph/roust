@@ -25,6 +25,21 @@ def enter_site():
     pwd = userd.password
     if verify_password(str(request.json['password']), pwd):
         return jsonify({'authenticated': verify_password(str(request.authorization['password']), pwd),
+                        'username': userd,
+                        'first_name': userd.first_name,
+                        'last_name': userd.last_name,
+                        "_status": "OK",
+                        })
+    else:
+        return jsonify(ERR_RESPONSE)
+
+
+@bp_public.route('/regis', methods=['POST'])
+def reg_user():
+    userd = User.objects(email=str(request.json['username'])).first()
+    pwd = userd.password
+    if verify_password(str(request.json['password']), pwd):
+        return jsonify({'authenticated': verify_password(str(request.authorization['password']), pwd),
                         'user': userd,
                         "_status": "OK",
                         })

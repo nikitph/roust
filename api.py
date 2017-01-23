@@ -32,6 +32,7 @@ ext = EveMongoengine(app)
 # register model to eve
 ext.add_model(Resident)
 ext.add_model(Township)
+ext.add_model(Item)
 
 
 
