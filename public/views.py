@@ -28,7 +28,7 @@ def enter_site():
                         'username': userd,
                         'first_name': userd.first_name,
                         'last_name': userd.last_name,
-                        "_status": "OK",
+                        "_status": "OK"
                         })
     else:
         return jsonify(ERR_RESPONSE)
