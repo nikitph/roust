@@ -14,9 +14,12 @@ MONGODB_SETTINGS = {
     # 'MONGO_PASSWORD': None,
     'MONGO_DBNAME': 'houzee',
     'X_DOMAINS': '*',
-    'ALLOW_OVERRIDE_HTTP_METHOD':'true',
-    'JSON_SORT_KEYS	':'true',
-    'DOMAIN': {'resident': {}}
+    'ALLOW_OVERRIDE_HTTP_METHOD': 'true',
+    'query_objectid_as_string': 'True',
+    'JSON_SORT_KEYS': 'true',
+    'DOMAIN': {'resident': {}},
+    'PAGINATION_LIMIT': 200,
+    'max_results': 80
 }
 
 
@@ -32,9 +35,8 @@ ext = EveMongoengine(app)
 # register model to eve
 ext.add_model(Resident)
 ext.add_model(Township)
-ext.add_model(Item)
-
-
+ext.add_model(Item, query_objectid_as_string='true')
+ext.add_model(Message, query_objectid_as_string='true')
 
 # let's roll
 app.run(host='127.0.0.1', port=8001, debug=True)

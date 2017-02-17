@@ -1,7 +1,14 @@
+import os
 from flask import Flask, request, abort, Response, redirect, url_for, flash, Blueprint, send_from_directory, jsonify
 from flask.templating import render_template
 from flask.ext.security.utils import verify_password
 from user.models import User
+from public.models import Message
+
+import datetime
+import json
+
+from werkzeug.utils import secure_filename
 
 bp_public = Blueprint('public', __name__, static_folder='../static')
 
@@ -21,6 +28,7 @@ def static_from_root():
 
 @bp_public.route('/enter', methods=['POST'])
 def enter_site():
+    # Message.objects().delete()
     userd = User.objects(email=str(request.json['username'])).first()
     pwd = userd.password
     if verify_password(str(request.json['password']), pwd):
@@ -45,3 +53,14 @@ def reg_user():
                         })
     else:
         return jsonify(ERR_RESPONSE)
+
+
+@bp_public.route('/uploader', methods=['POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            now = datetime.datetime.now()
+            filename = secure_filename(file.filename)
+            file.save(os.path.join('/Users/Omkareshwar/PycharmProjects/roust/static/img/', 'item' + str(now) + '.jpeg'))
+            return jsonify({"filepath": 'static/img/' + filename})

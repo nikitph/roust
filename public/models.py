@@ -237,9 +237,10 @@ class News(db.Document):
 class Item(db.Document):
     building = db.StringField(required=True, max_length=50, help_text='')
     user = db.StringField(required=True, help_text='')
+    user_name = db.StringField(required=False, default='Seller')
     item_summary = db.StringField(required=True, max_length=120, help_text='')
     price = db.StringField(required=True, max_length=50, help_text='')
-    details = db.StringField(required=True, help_text='subject')
+    details = db.StringField(required=False, help_text='subject')
     image = db.StringField(required=False, max_length=200,
                            default='static/img/256px-Weiser_State_Forest_Walking_Path.jpg')
     sold = db.BooleanField(required=True, default=False)
@@ -270,3 +271,17 @@ class Service(db.Document):
         data = self.to_mongo()
         data["user"] = self.user.first_name + ' ' + self.user.last_name
         return json_util.dumps(data, *args, **kwargs)
+
+
+class Message(db.DynamicDocument):
+    building = db.StringField(required=True, max_length=50, help_text='')
+    sender = db.StringField(required=True, help_text='')
+    sender_name = db.StringField(required=True, help_text='')
+    buyer = db.StringField(required=False, help_text='')
+    user = db.StringField(required=False, help_text='')
+    buyer_name = db.StringField(required=False, help_text='')
+    seller = db.StringField(required=False, help_text='')
+    seller_name = db.StringField(required=False, help_text='')
+    text = db.StringField(required=True, help_text='')
+    item = db.StringField(required=True, help_text='')
+    createdAt = db.StringField(required=True, help_text='')
