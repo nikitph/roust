@@ -5,6 +5,7 @@ from flask import Blueprint, request, redirect, url_for, g, jsonify
 
 from flask.ext.security import login_required, current_user, roles_required, user_registered
 from flask.ext.security.script import CreateUserCommand, AddRoleCommand, ActivateUserCommand
+from flask.ext.security.utils import encrypt_password
 from flask.ext.sse import sse
 from flask.templating import render_template
 from werkzeug.utils import secure_filename
@@ -127,7 +128,7 @@ def resident():
         rid = poster(request, Resident)
         User.objects(id=rid).update_one(set__username=str(request.form['email']))
         # add encryptipon
-        User.objects(id=rid).update_one(set__password=str(request.form['phone']))
+        User.objects(id=rid).update_one(set__password=encrypt_password(str(request.form['phone'])))
         User.objects(id=rid).update_one(set__active=True)
         User.objects(id=rid).update_one(set__building=str(g.user.building))
         User.objects(id=rid).update_one(set__buildingid=str(g.user.buildingid))
